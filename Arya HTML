@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arya Mistry | Marketing Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:96px; }
+    body { font-family:"Poppins", Arial, sans-serif; background:#f7f4ef; color:#171717; line-height:1.6; overflow-x:hidden; }
+    img { max-width:100%; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:min(1160px, 90%); margin:auto; }
+    header { position:sticky; top:0; z-index:1000; background:rgba(247,244,239,.88); backdrop-filter:blur(14px); border-bottom:1px solid rgba(0,0,0,.08); }
+    nav { height:72px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-weight:900; font-size:1.3rem; letter-spacing:-.5px; }
+    .logo span, .accent { color:#8b1e2d; }
+    .nav-links { display:flex; gap:28px; font-size:.95rem; font-weight:600; }
+    .nav-links a:hover { color:#8b1e2d; }
+    .hero { padding:64px 0 54px; display:grid; grid-template-columns:minmax(0,1fr) minmax(390px,470px); gap:38px; align-items:center; }
+    .hero-copy { min-width:0; }
+    .tag { display:inline-flex; gap:8px; align-items:center; background:#fff; border:1px solid #e6ded4; border-radius:999px; padding:8px 16px; font-size:.88rem; margin-bottom:22px; color:#8b1e2d; font-weight:700; box-shadow:0 10px 30px rgba(0,0,0,.04); }
+    h1 { font-size:clamp(2.7rem, 5vw, 4.7rem); line-height:1.01; letter-spacing:-2.8px; margin-bottom:24px; }
+    .hero p { font-size:1.12rem; max-width:650px; color:#555; margin-bottom:34px; }
+    .hero-buttons { display:flex; gap:16px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 22px; border-radius:999px; font-weight:800; border:1px solid #171717; transition:.25s ease; white-space:nowrap; flex-shrink:0; }
+    .btn-primary { background:#171717; color:#fff; }
+    .btn-primary:hover { background:#8b1e2d; border-color:#8b1e2d; transform:translateY(-2px); }
+    .btn-secondary:hover { background:#fff; transform:translateY(-2px); }
+    .hero-portrait { position:relative; min-height:560px; display:flex; align-items:center; justify-content:center; }
+    .hero-portrait::before { content:""; position:absolute; width:82%; height:82%; border-radius:42px; background:linear-gradient(135deg,#8b1e2d,#171717); transform:rotate(-5deg); box-shadow:0 35px 90px rgba(0,0,0,.20); }
+    .hero-portrait::after { display:none; }
+    .profile-card { position:relative; z-index:2; width:min(430px,100%); border-radius:34px; overflow:hidden; background:#fff; border:1px solid #eadfd4; box-shadow:0 30px 70px rgba(0,0,0,.18); }
+    .profile-card img { width:100%; height:520px; object-fit:cover; object-position:center top; display:block; }
+    .profile-caption { position:absolute; left:18px; right:18px; bottom:18px; border-radius:22px; padding:16px 18px; color:#fff; background:rgba(23,23,23,.72); backdrop-filter:blur(12px); }
+    .profile-caption strong { display:block; font-size:1.12rem; line-height:1.1; }
+    .profile-caption span { display:block; margin-top:4px; color:#f1dfe3; font-size:.86rem; font-weight:600; }
+    .project-image img, .gallery-card img { width:100%; height:100%; object-fit:cover; display:block; }
+    section { padding:62px 0; scroll-margin-top:88px; }
+    .section-title { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:28px; }
+    .section-title h2 { font-size:clamp(2rem, 4vw, 3.25rem); letter-spacing:-1.6px; line-height:1; }
+    .section-title p { max-width:500px; color:#666; }
+    .metric-strip { grid-column:1 / -1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:2px; }
+    .metric { background:#171717; color:#fff; border-radius:24px; padding:24px; min-height:124px; display:flex; flex-direction:column; justify-content:center; gap:10px; }
+    .metric strong { display:block; font-size:2.2rem; line-height:1; }
+    .metric span { color:#d9d9d9; font-size:.88rem; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; align-items:start; }
+    .project-card { background:#fff; border:1px solid #eadfd4; border-radius:28px; overflow:hidden; transition:.25s ease; display:flex; flex-direction:column; min-width:0; }
+    .project-card:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(0,0,0,.1); }
+    .project-image { height:275px; background:#171717; overflow:hidden; }
+    .project-content { padding:24px; display:flex; flex-direction:column; flex:1; }
+    .project-content h3 { font-size:1.22rem; margin-bottom:10px; letter-spacing:-.3px; }
+    .project-content p { color:#666; font-size:.94rem; margin-bottom:16px; }
+    .project-card.featured-wide { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr); height:460px; }
+    .featured-wide .project-image { height:100%; min-height:440px; }
+    .featured-wide .project-image img { object-fit:contain; background:#201b18; }
+    .featured-wide .project-content { justify-content:center; padding:38px; }
+    .featured-wide .project-content h3 { font-size:clamp(1.7rem,3vw,2.5rem); line-height:1.08; letter-spacing:-1px; }
+    .featured-wide .project-content p { font-size:1rem; margin-bottom:0; }
+    .featured-wide .chips { margin-top:20px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:2px; }
+    .chip { background:#f7f4ef; padding:7px 10px; border-radius:999px; font-size:.76rem; font-weight:700; color:#8b1e2d; }
+    .about { background:#171717; color:#fff; border-radius:36px; padding:48px; display:grid; grid-template-columns:.85fr 1.15fr; gap:38px; align-items:center; position:relative; overflow:hidden; }
+    .about::after { content:""; position:absolute; width:280px; height:280px; background:#8b1e2d; border-radius:50%; right:-110px; bottom:-130px; opacity:.75; }
+    .about h2 { font-size:3rem; line-height:1; letter-spacing:-1.5px; position:relative; z-index:1; }
+    .about p { color:#d6d6d6; margin-bottom:18px; position:relative; z-index:1; }
+    .about p:last-child { margin-bottom:0; }
+    .timeline { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; align-items:stretch; }
+    .timeline-item { background:#fff; border:1px solid #eadfd4; border-radius:24px; padding:24px; }
+    .timeline-item small { color:#8b1e2d; font-weight:900; text-transform:uppercase; letter-spacing:.7px; }
+    .timeline-item h3 { margin:8px 0; }
+    .internship-feature { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:32px; padding:36px; color:#fff; background:linear-gradient(135deg,#8b1e2d 0%,#64131f 100%); border:0; position:relative; overflow:hidden; }
+    .internship-feature::after { content:"01"; position:absolute; right:24px; top:-22px; color:rgba(255,255,255,.08); font-size:8rem; font-weight:900; line-height:1; }
+    .internship-feature small { color:#ffdbe1; }
+    .internship-feature h3 { font-size:clamp(2rem,4vw,3.1rem); line-height:1; letter-spacing:-1.5px; margin:10px 0 16px; }
+    .internship-feature p { color:#f8e9ec; position:relative; z-index:1; }
+    .internship-label { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; padding:8px 12px; border:1px solid rgba(255,255,255,.28); border-radius:999px; color:#fff; font-size:.72rem; font-weight:900; letter-spacing:.65px; text-transform:uppercase; }
+    .internship-label::before { content:""; width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 0 5px rgba(255,255,255,.14); }
+    .internship-work { display:grid; grid-template-columns:1fr 1fr; gap:12px; align-content:center; position:relative; z-index:1; }
+    .work-area { padding:18px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.17); border-radius:18px; }
+    .work-area strong { display:block; margin-bottom:5px; font-size:.96rem; }
+    .work-area span { display:block; color:#f1ced4; font-size:.82rem; line-height:1.5; }
+    .leadership { margin-top:18px; background:#171717; color:#fff; border-radius:32px; padding:38px; position:relative; overflow:hidden; }
+    .leadership::after { content:""; position:absolute; width:260px; height:260px; border-radius:50%; background:#8b1e2d; right:-120px; top:-140px; opacity:.75; }
+    .leadership-head { display:grid; grid-template-columns:.75fr 1.25fr; gap:32px; align-items:end; position:relative; z-index:1; margin-bottom:28px; }
+    .leadership-head small { color:#e9aab5; font-weight:900; text-transform:uppercase; letter-spacing:.8px; }
+    .leadership-head h3 { font-size:clamp(2rem,4vw,3rem); line-height:1; letter-spacing:-1.4px; margin-top:8px; }
+    .leadership-head p { color:#d1d1d1; font-size:1.02rem; }
+    .impact-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-rows:1fr; gap:14px; position:relative; z-index:1; align-items:stretch; }
+    .impact-card { min-height:190px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.07); border-radius:22px; padding:22px; display:flex; flex-direction:column; }
+    .impact-card strong { display:block; color:#f1b3bd; font-size:.73rem; letter-spacing:.75px; text-transform:uppercase; margin-bottom:10px; }
+    .impact-card h4 { font-size:1.12rem; margin-bottom:8px; }
+    .impact-card p { color:#cfcfcf; font-size:.9rem; }
+    .impact-card.winner { background:#8b1e2d; border-color:#a94a59; }
+    .impact-card.winner strong,.impact-card.winner p { color:#fff; }
+    .expertise-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; align-items:stretch; }
+    .expertise-card { background:#fff; border:1px solid #eadfd4; border-radius:26px; padding:28px; }
+    .expertise-card small { display:block; color:#8b1e2d; font-weight:900; text-transform:uppercase; letter-spacing:.75px; margin-bottom:8px; }
+    .expertise-card h3 { font-size:1.4rem; margin-bottom:18px; letter-spacing:-.4px; }
+    .expertise-list { display:flex; flex-wrap:wrap; gap:9px; }
+    .expertise-list span { background:#f7f4ef; border:1px solid #eadfd4; border-radius:999px; padding:8px 12px; color:#4f4f4f; font-size:.82rem; font-weight:700; }
+    .gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .gallery-card { aspect-ratio:1 / .86; border-radius:24px; overflow:hidden; background:#fff; border:1px solid #eadfd4; cursor:pointer; transition:.25s ease; }
+    .gallery-card:hover { transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.1); }
+    .contact { background:#8b1e2d; color:#fff; border-radius:36px; padding:48px; display:flex; justify-content:space-between; gap:30px; align-items:center; }
+    .contact-copy { max-width:760px; }
+    .contact h2 { font-size:3rem; line-height:1; letter-spacing:-1.4px; }
+    .contact p { color:#f3dce1; margin-top:14px; }
+    .contact-email { display:inline-flex; margin-top:18px; color:#fff; font-weight:800; border-bottom:1px solid rgba(255,255,255,.65); overflow-wrap:anywhere; }
+    .contact-email:hover { border-bottom-color:#fff; }
+    footer { padding:22px 0; text-align:center; color:#666; font-size:.9rem; }
+    .lightbox { position:fixed; inset:0; background:rgba(0,0,0,.88); z-index:3000; display:none; align-items:center; justify-content:center; padding:28px; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width:92vw; max-height:88vh; border-radius:18px; box-shadow:0 25px 80px rgba(0,0,0,.5); }
+    .close { position:absolute; top:22px; right:28px; color:white; font-size:2.2rem; cursor:pointer; }
+    @media(max-width:950px) {
+      .hero,.about,.leadership-head,.internship-feature { grid-template-columns:1fr; }
+      .grid,.timeline { grid-template-columns:1fr 1fr; }
+      .expertise-grid,.metric-strip,.gallery,.impact-grid { grid-template-columns:1fr 1fr; }
+      .section-title,.contact { flex-direction:column; align-items:flex-start; }
+      .section-title { gap:14px; }
+      .internship-feature { gap:26px; }
+    }
+    @media(max-width:600px) {
+      .container { width:calc(100% - 32px); }
+      .nav-links { display:none; }
+      nav { height:64px; }
+      section { padding:44px 0; scroll-margin-top:76px; }
+      .hero { padding:46px 0; gap:32px; }
+      .tag { max-width:100%; white-space:normal; line-height:1.45; }
+      .grid,.timeline,.expertise-grid,.metric-strip,.gallery,.impact-grid,.internship-work { grid-template-columns:1fr; }
+      .hero-buttons .btn { flex:1; min-width:140px; }
+      .hero-portrait { min-height:420px; }
+      .profile-card img { height:390px; }
+      .project-image { height:auto; aspect-ratio:1.22 / 1; }
+      .project-card.featured-wide { grid-column:auto; display:flex; height:auto; }
+      .featured-wide .project-image { min-height:0; aspect-ratio:1 / 1; }
+      .featured-wide .project-content { padding:24px; }
+      .grid,.impact-grid { grid-auto-rows:auto; }
+      .section-title { margin-bottom:22px; }
+      .section-title p { max-width:none; }
+      .about,.contact,.leadership,.internship-feature { padding:28px; border-radius:28px; }
+      .contact { gap:22px; }
+      .contact .btn { width:100%; }
+      .contact h2,.about h2 { font-size:2.35rem; }
+      .leadership-head { gap:20px; margin-bottom:24px; }
+      .internship-label { margin-bottom:20px; }
+      .work-area { padding:16px; }
+      h1 { letter-spacing:-2px; }
+      .impact-card { min-height:auto; }
+      .gallery-card { aspect-ratio:1 / .82; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container"><nav><div class="logo">Arya<span>.</span></div><div class="nav-links"><a href="#work">Work</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div></nav></div>
+  </header>
+  <main>
+    <section class="container hero">
+      <div class="hero-copy">
+        <span class="tag">Marketing Strategist • Brand Storyteller • Creative Designer</span>
+        <h1>Creating marketing that connects, converts, and stays remembered.</h1>
+        <p>MBA student specializing in marketing, passionate about building brands, designing campaigns, and solving business challenges through creativity. I combine consumer psychology, strategic thinking, and visual storytelling to create marketing that drives attention and engagement.</p>
+        <div class="hero-buttons"><a href="#work" class="btn btn-primary">View My Work</a><a href="mailto:arya.ft27@bkschool.org.in" class="btn btn-secondary">Contact Me</a></div>
+      </div>
+      <div class="hero-portrait">
+        <div class="profile-card">
+          <img src="assets/arya_mistry_profile.png" alt="Arya Mistry professional portrait">
+          <div class="profile-caption"><strong>Arya Mistry</strong><span>MBA Student • Marketing Enthusiast • Creative Designer</span></div>
+        </div>
+      </div>
+      <div class="metric-strip"><div class="metric"><strong>100+</strong><span>Marketing creatives designed</span></div><div class="metric"><strong>10+</strong><span>Responsive email campaigns developed</span></div><div class="metric"><strong>10</strong><span>Brand advertising concepts created</span></div><div class="metric"><strong>92</strong><span>Percentile achieved in CMAT</span></div></div>
+    </section>
+
+    <section id="work" class="container"><div class="section-title"><h2>Campaigns Driven by Insight</h2><p>Advertising concepts that combine strategy, consumer insight, and compelling visual storytelling to solve real marketing challenges.</p></div><div class="grid">
+      <article class="project-card"><div class="project-image"><img src="assets/makemytrip_memories.png" alt="MakeMyTrip campaign"></div><div class="project-content"><h3>MakeMyTrip Emotional Travel Campaign</h3><p>Developed an emotional campaign that positioned travel as an investment in family memories rather than a scheduled vacation.</p><div class="chips"><span class="chip">Consumer Insight</span><span class="chip">Emotional Advertising</span></div></div></article><article class="project-card"><div class="project-image"><img src="assets/mahindra_mountains.png" alt="Mahindra campaign"></div><div class="project-content"><h3>Mahindra Adventure SUV Ad</h3><p>Conceptualized a high-impact outdoor campaign emphasizing courage, exploration, and emotional storytelling through cinematic visuals.</p><div class="chips"><span class="chip">Visual Direction</span><span class="chip">Automobile Ad</span></div></div></article><article class="project-card"><div class="project-image"><img src="assets/naturals_king_mango.png" alt="Naturals mango ice cream"></div><div class="project-content"><h3>Naturals Mango Launch Creative</h3><p>Designed a premium product launch campaign that celebrated seasonal exclusivity while reinforcing the brand’s fresh-fruit positioning.</p><div class="chips"><span class="chip">Product Launch</span><span class="chip">Food Branding</span></div></div></article><article class="project-card"><div class="project-image"><img src="assets/durex_date_dont_donate.png" alt="Durex campaign"></div><div class="project-content"><h3>Durex Social Awareness Ad</h3><p>Crafted a minimalist awareness campaign using bold copywriting and strategic wordplay to maximize recall.</p><div class="chips"><span class="chip">Bold Copy</span><span class="chip">Social Message</span></div></div></article><article class="project-card"><div class="project-image"><img src="assets/kitkat_escape_screen.png" alt="KitKat campaign"></div><div class="project-content"><h3>KitKat Break Campaign</h3><p>Reimagined the brand’s “break” proposition by encouraging meaningful offline moments in an increasingly digital world.</p><div class="chips"><span class="chip">Moment Marketing</span><span class="chip">Lifestyle Ad</span></div></div></article><article class="project-card"><div class="project-image"><img src="assets/mamaearth_clean_beauty.png" alt="Mamaearth campaign"></div><div class="project-content"><h3>Mamaearth Clean Beauty Ad</h3><p>Positioned the product through a clean visual identity that highlighted sustainability, simplicity, and natural ingredients.</p><div class="chips"><span class="chip">Minimal Design</span><span class="chip">Beauty Branding</span></div></div></article>
+      <article class="project-card featured-wide"><div class="project-image"><img src="assets/titan_every_chapter.jpeg" alt="Titan watch Every Chapter Begins With a Moment campaign"></div><div class="project-content"><h3>Titan — Every Chapter Begins With a Moment</h3><p>Built an emotional storytelling campaign portraying a watch as a lifelong companion through every milestone.</p><div class="chips"><span class="chip">Emotional Storytelling</span><span class="chip">Product Advertising</span><span class="chip">Brand Narrative</span></div></div></article>
+    </div></section>
+
+    <section id="about" class="container"><div class="about"><div><h2>The Marketer Behind the Campaigns</h2></div><div><p>I believe successful marketing begins with understanding people before promoting products. My approach combines business strategy, consumer psychology, creative design, and storytelling to create campaigns that influence perception and inspire action.</p><p>Currently pursuing an MBA at BK School of Professional and Management Studies, I continuously explore branding, digital marketing, advertising, and creative communication while transforming ideas into meaningful customer experiences.</p></div></div></section>
+
+    <section id="experience" class="container">
+      <div class="section-title"><h2>Building Marketing Experience</h2><p>Professional work shaped by hands-on execution, strategic thinking, creative ownership, and measurable contribution.</p></div>
+      <div class="timeline">
+        <article class="timeline-item internship-feature">
+          <div>
+            <span class="internship-label">Internship Spotlight</span>
+            <small>Digital Marketing Internship</small>
+            <h3>Punyam Academy</h3>
+            <p>Strengthened digital marketing execution across research, creative production, customer communication, social media, and campaign workflows.</p>
+          </div>
+          <div class="internship-work">
+            <div class="work-area"><strong>Email Marketing</strong><span>Designed responsive HTML email campaigns that strengthened customer communication</span></div>
+            <div class="work-area"><strong>Creative Design</strong><span>Produced 100+ marketing creatives using Canva and AI-powered tools</span></div>
+            <div class="work-area"><strong>Social Media</strong><span>Managed social media assets and developed engaging visual content</span></div>
+            <div class="work-area"><strong>Research & Strategy</strong><span>Conducted competitor analysis and identified opportunities to improve campaigns</span></div>
+          </div>
+        </article>
+        <div class="timeline-item"><small>Social Media & Marketing</small><h3>Renaissance, BKSPMS</h3><p>Shot and edited reels for the college flagship programme, including one of the highest-viewed reels on the page.</p></div>
+        <div class="timeline-item"><small>Community Volunteering</small><h3>Robin Hood Army</h3><p>Contributed to outreach and logistics, helping distribute 2,000+ meals and encouraging peers to volunteer.</p></div>
+      </div>
+      <div class="leadership">
+        <div class="leadership-head">
+          <div><small>Leadership & Campus Impact</small><h3>Head of Non-Academic Clubs</h3></div>
+          <p>Led, organized, and strengthened student communities by driving entrepreneurship initiatives, creative projects, campus events, and collaborative activities through the Students’ Academic Council.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card"><strong>Club Leadership</strong><h4>Head, EPIC Club</h4><p>Directed entrepreneurship initiatives, organized startup-focused activities, and promoted innovation through founder storytelling.</p></article>
+          <article class="impact-card winner"><strong>Competition Winner</strong><h4>Inter-B-School Meme Making Champion</h4><p>Secured first place with creative communication that stood out among leading B-schools, including IIMs, MDI, and IIFT.</p></article>
+          <article class="impact-card"><strong>Cross-Club Collaboration</strong><h4>Memagers & Life@BK</h4><p>Collaborated with cross-functional student teams to execute campus engagement initiatives.</p></article>
+          <article class="impact-card"><strong>Creative Ownership</strong><h4>Aarash Magazine</h4><p>Designed editorial layouts and visual assets that enhanced the publication’s creative identity.</p></article>
+          <article class="impact-card"><strong>On-Ground Execution</strong><h4>College Events</h4><p>Coordinated multiple college events by supporting planning, execution, and on-ground operations.</p></article>
+          <article class="impact-card"><strong>College Representation</strong><h4>Sports Medallist</h4><p>Represented the institution in sports competitions while demonstrating teamwork, resilience, and leadership.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="container">
+      <div class="section-title"><h2>Core Expertise</h2><p>A focused mix of strategic, creative, digital, and technical marketing capabilities.</p></div>
+      <div class="expertise-grid">
+        <article class="expertise-card"><small>01</small><h3>Marketing Strategy</h3><div class="expertise-list"><span>Brand Strategy</span><span>Campaign Planning</span><span>Positioning</span><span>Consumer Research</span><span>Competitor Analysis</span></div></article>
+        <article class="expertise-card"><small>02</small><h3>Creative Communication</h3><div class="expertise-list"><span>Concept Development</span><span>Visual Storytelling</span><span>Copywriting</span><span>Brand Identity</span><span>Typography</span></div></article>
+        <article class="expertise-card"><small>03</small><h3>Digital Marketing</h3><div class="expertise-list"><span>Social Media Marketing</span><span>Email Marketing</span><span>Campaign Management</span><span>SEO</span><span>Marketing Analytics</span></div></article>
+        <article class="expertise-card"><small>04</small><h3>Technical Toolkit</h3><div class="expertise-list"><span>Canva</span><span>HTML</span><span>Power BI</span><span>Excel</span><span>SQL</span><span>AI Tools</span><span>Mailchimp</span></div></article>
+      </div>
+    </section>
+
+    <section id="gallery" class="container"><div class="section-title"><h2>Creative Explorations</h2><p>Advertising concepts developed across FMCG, automotive, beauty, technology, travel, and lifestyle brands.</p></div><div class="gallery">
+      <div class="gallery-card"><img src="assets/durex_date_dont_donate.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/naturals_king_mango.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/naturals_wait_mango.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/mahindra_mountains.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/makemytrip_memories.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/amul_football_fever.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/kitkat_escape_screen.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/ambuja_build_dont_rebuild.png" alt="Creative portfolio image"></div><div class="gallery-card"><img src="assets/mamaearth_clean_beauty.png" alt="Creative portfolio image"></div>
+    </div></section>
+
+    <section id="contact" class="container"><div class="contact"><div class="contact-copy"><h2>Let’s Create Marketing That Matters.</h2><p>I’m always open to discussing internships, brand strategy, advertising, creative campaigns, and marketing collaborations.</p><a class="contact-email" href="mailto:arya.ft27@bkschool.org.in">arya.ft27@bkschool.org.in</a></div><a class="btn btn-primary" href="mailto:arya.ft27@bkschool.org.in">Let’s Connect</a></div></section>
+  </main>
+  <footer><p>© 2026 Arya Mistry. Designed &amp; Developed by Arya Mistry.</p></footer>
+  <div class="lightbox" id="lightbox"><span class="close" id="close">×</span><img id="lightboxImg" src="" alt="Expanded creative"></div>
+  <script>
+    const box=document.getElementById('lightbox'); const img=document.getElementById('lightboxImg');
+    document.querySelectorAll('.gallery-card img,.project-image img').forEach(el=>{el.addEventListener('click',()=>{img.src=el.src; box.classList.add('open');})});
+    document.getElementById('close').addEventListener('click',()=>box.classList.remove('open'));
+    box.addEventListener('click',e=>{if(e.target===box) box.classList.remove('open')});
+  </script>
+</body>
+</html>
